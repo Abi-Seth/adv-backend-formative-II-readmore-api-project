@@ -1,5 +1,27 @@
 # ReadMore API — Express + MongoDB (Mongoose)
 
+## Run the project
+
+With Node.js 18+ and a running MongoDB instance, run these commands from the repository root.
+
+```sh
+npm ci
+cp .env.example .env
+npm start
+```
+
+The example connects to a local database named `readmore`. For Atlas, set `MONGODB_URI` in `.env` to your connection string. Start with `GET http://localhost:3000/` in your API client.
+
+### API behavior
+
+- An author requires `name`. A book requires `title`, `price`, `publishedYear` and an existing `author` id. Both PUT routes accept partial updates.
+- An author with books returns `409` on deletion. This preserves the catalog and its attribution. The trade-off is that staff must move or delete each book before removing its author. This implementation runs as a single API process. It orders book creation and reassignment with author deletions so overlapping requests preserve the reference on standalone MongoDB.
+- A case-insensitive unique index on author and title applies to both new books and edits. Different authors can publish books with the same title.
+- `GET /books` returns `{ page, limit, total, results }`. Without pagination it returns all matches and reports their count as the limit. Supplying only `page` uses 20 books per page. For example, `/books?genre=Thriller&minPrice=10&sort=price&order=desc&page=1&limit=5` returns the five highest-priced matching thrillers on the first page.
+- For an author with no books, statistics return a count of zero and `null` for the average and both titles.
+
+## Assignment brief
+
 Your first backend API assignment. Build a small REST API for a bookstore using **Express.js**, with **MongoDB** as the database and **Mongoose** as the modelling layer.
 
 There are **two entities** — **Author** and **Book** — and they are **linked**: one author can have many books, and every book belongs to one author. You will model them, connect to MongoDB, and build endpoints for each.
