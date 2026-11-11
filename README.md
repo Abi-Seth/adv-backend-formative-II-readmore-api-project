@@ -1,6 +1,6 @@
 # ReadMore API — Express + MongoDB (Mongoose)
 
-[Watch the ReadMore API walkthrough (MP4)](./video_recording.mp4)
+[Watch the ReadMore API walkthrough on YouTube](https://youtu.be/06-_ONRvRvo)
 
 ## Run the project
 
