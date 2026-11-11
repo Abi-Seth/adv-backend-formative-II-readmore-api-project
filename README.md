@@ -1,5 +1,7 @@
 # ReadMore API — Express + MongoDB (Mongoose)
 
+[Watch the ReadMore API walkthrough (MP4)](./video_recording.mp4)
+
 ## Run the project
 
 With Node.js 18+ and a running MongoDB instance, run these commands from the repository root.
